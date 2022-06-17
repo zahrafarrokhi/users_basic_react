@@ -85,3 +85,29 @@ handleUpdate = (user) => {
     
   };
 ```
+
+## update user
+```jsx
+ <button  onClick={()=>{this.handleUpdate(user)}}
+          className="btn btn-info btn-sm"
+  >
+    Update
+  </button>
+ // update
+
+  // handleUpdate = (user) => {
+  //   console.log(user)
+  // };
+
+  handleUpdate = async (user) => {
+    user.first_name = 'updated';
+    const response = await axios.put(`https://reqres.in/api/users/${user.id}`, user);
+    console.log(response)
+    const updatedUsers = [...this.state.users];
+    const index = updatedUsers.indexOf(user);
+    updatedUsers[index] = {...user};
+    this.setState({users: updatedUsers});
+  };  
+
+
+```
