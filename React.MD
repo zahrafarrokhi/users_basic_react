@@ -239,3 +239,14 @@ class App extends React.Component {
 
 export default App;
 ```
+
+## Link
+```jsx
+src/components/navbar.jsx
+import {Link, NavLink} from 'react-router-dom';
+
+tag a => link
+link => NavLink
+href => to
+
+```
