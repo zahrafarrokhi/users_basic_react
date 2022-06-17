@@ -259,7 +259,7 @@ src/app.js
 ```
 ## Transfer information through URL
 ## Receive and transfer information
-* Parameter
+###  Parameter
 ```jsx
 // src/app.js
 import User from "./components/user";
@@ -326,7 +326,7 @@ useEffect(async () => {
     );
     // console.log(response)
     setUser(response.data.data);
-  });
+  },[]);
 // user
 
 <img src={user.avatar}  />
@@ -336,3 +336,5 @@ useEffect(async () => {
 <h5>{user.email}</h5>
 
 ```
+
+###  query

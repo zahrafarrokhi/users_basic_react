@@ -11,7 +11,7 @@ const User = (props) => {
     );
     // console.log(response)
     setUser(response.data.data);
-  });
+  },[]);
   return (
     <>
       {/* <h1>user</h1> */}
