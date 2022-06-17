@@ -94,8 +94,15 @@ class Users extends Component {
     updatedUsers[index] = {...user};
     this.setState({users: updatedUsers});
   };  
+  
+  // delete
+  // handleDelete = (user) => {};
 
-  handleDelete = (user) => {};
+  handleDelete = async(user) => {
+    const response = await axios.delete(`https://reqres.in/api/users/${user.id}`);
+    const newUsers = this.state.users.filter(u => u.id !== user.id);
+    this.setState({users: newUsers});
+  };
 }
 
 export default Users;

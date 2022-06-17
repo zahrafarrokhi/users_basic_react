@@ -111,3 +111,21 @@ handleUpdate = (user) => {
 
 
 ```
+
+## delete user
+```jsx
+ <button  onClick={() => { this.handleDelete(user) }}
+          className="btn btn-danger btn-sm"
+  >
+    Delete
+  </button>
+// delete
+  // delete
+  // handleDelete = (user) => {};
+
+  handleDelete = async(user) => {
+    const response = await axios.delete(`https://reqres.in/api/users/${user.id}`);
+    const newUsers = this.state.users.filter(u => u.id !== user.id);
+    this.setState({users: newUsers});
+  };
+```
