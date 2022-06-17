@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Register extends React.Component {
+class Register extends Component {
   render() { 
     return <h1>Register</h1>;
   }

@@ -75,7 +75,7 @@ class Users extends Component {
       avatar: '(../../screenshots/avatar.png)'
     };
     const response = await axios.post('https://reqres.in/api/users', newUser);
-    // console.log(response)
+    console.log(response)
     this.setState({users: [...this.state.users, newUser]});
   };
 
@@ -100,6 +100,7 @@ class Users extends Component {
 
   handleDelete = async(user) => {
     const response = await axios.delete(`https://reqres.in/api/users/${user.id}`);
+    console.log(response)
     const newUsers = this.state.users.filter(u => u.id !== user.id);
     this.setState({users: newUsers});
   };
