@@ -250,3 +250,89 @@ link => NavLink
 href => to
 
 ```
+
+## props to route
+```jsx
+src/app.js
+ <Route path="/users" render={(props)=>{<Users {...props}/>}} />
+
+```
+## Transfer information through URL
+## Receive and transfer information
+* Parameter
+```jsx
+// src/app.js
+import User from "./components/user";
+<Route path="/users/:id" component={User} />
+
+```
+
+```jsx
+// src/components/user.jsx
+const User = (props) => {
+
+  return (
+    <>
+     <h1>user</h1>
+    </>
+  );
+};
+
+export default User;
+
+```
+
+http://localhost:3000/users/5
+
+![parameter](./screenshots/parameters.png)
+
+## console.log(props.match.params)
+```jsx
+const User = (props) => {
+console.log(props.match.params)
+  return (
+    <>
+     <h1>user</h1>
+    </>
+  );
+};
+
+export default User;
+// inspect/console.log
+Object
+id: "5"
+```
+## get user
+* 1.
+```jsx
+// src/components/users.jsx
+import { Link } from "react-router-dom";
+ <Link to={`/users/${user.id}`}>
+      <h4>
+          {user.first_name} {user.last_name}
+      </h4>
+  </Link>
+```
+* 2
+```jsx
+// src/components/user.jsx
+import { useState, useEffect } from "react";
+// state
+const [user, setUser] = useState({});
+// useEffect
+useEffect(async () => {
+    const response = await axios.get(
+      `https://reqres.in/api/users/${props.match.params.id}`
+    );
+    // console.log(response)
+    setUser(response.data.data);
+  });
+// user
+
+<img src={user.avatar}  />
+<h4>
+  {user.first_name} {user.last_name}
+</h4>
+<h5>{user.email}</h5>
+
+```
