@@ -39,7 +39,8 @@ this.setState({users: response.data.data});
 ## loading
 
 ```jsx
-[loading](https://www.npmjs.com/package/react-loading-skeleton)
+[react-loading-skeleton](https://www.npmjs.com/package/react-loading-skeleton)
+
 npm i react-loading-skeleton
 
 ```
@@ -47,4 +48,40 @@ npm i react-loading-skeleton
 ```jsx
 // javascript
 Array(6).fill({})
+```
+
+## users data
+```jsx
+ <button onClick={()=>{this.handleUpdate(user)}}
+          className="btn btn-info btn-sm"
+  >
+      Update
+  </button>
+
+handleUpdate = (user) => {
+    console.log(user)
+  };
+
+// inspect/click on update button and get users data
+```
+
+
+## create User
+```jsx
+ <button onClick={this.handleCreate} className="btn btn-lg btn-primary">
+          create
+ </button>
+// handleCreate
+ handleCreate = async () => {
+    const newUser = {
+      first_name: 'aa',
+      last_name: 'abc',
+      email: 'abc@gmail.com',
+      avatar: '(../../screenshots/avatar.png)'
+    };
+    const response = await axios.post('https://reqres.in/api/users', newUser);
+    // console.log(response)
+    this.setState({ users: [...this.state.users, newUser] });
+    
+  };
 ```
