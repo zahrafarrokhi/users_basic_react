@@ -129,3 +129,16 @@ handleUpdate = (user) => {
     this.setState({users: newUsers});
   };
 ```
+
+## router
+```jsx
+
+npm i recat-router-dom
+```
+
+```jsx
+src/navbar.jsx
+src/home.jsx
+src/login.jsx
+src/register.jsx
+```

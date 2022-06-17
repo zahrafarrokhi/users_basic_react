@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import Users from './components/users';
+import Navbar from './components/navbar';
 
 class App extends React.Component {
   render() { 
-    return <Users/>;
+    return <>
+      <Navbar />
+      <div className='container mt-3'>
+        <Users/>
+      </div>
+    </>
   }
 }
  
