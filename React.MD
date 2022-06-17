@@ -16,9 +16,35 @@ cat /etc/os-release
  async componentDidMount(){
     const response = await axios.get('https://reqres.in/api/users');
     console.log(response);
+    console.log(response.data);
+    console.log(response.data.data);
     
   }
 
 ```
 
 ![axios](./screenshots/axios.png)
+
+```jsx
+ async componentDidMount(){
+    const response = await axios.get('https://reqres.in/api/users');
+    console.log(response);
+    
+  }
+this.setState({users: response.data.data});
+```
+
+![usersdata](./screenshots/usersdata.png)
+
+## loading
+
+```jsx
+[loading](https://www.npmjs.com/package/react-loading-skeleton)
+npm i react-loading-skeleton
+
+```
+
+```jsx
+// javascript
+Array(6).fill({})
+```
