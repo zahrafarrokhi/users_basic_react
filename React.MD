@@ -354,3 +354,30 @@ out=>
 // order: "oldest"
 // s: "phone"
 ```
+
+### Redirect
+
+
+```jsx
+// src/components/notFound.jsx
+const NotFound = () => {
+  return ( <h1>Not found</h1> );
+}
+ 
+export default NotFound;
+// src/app.js
+import { Route, Switch, Redirect } from "react-router-dom";
+import NotFound from "./components/notFound";
+<Route path="/not-found" component={NotFound} />
+<Redirect to="/not-found" />
+
+// or
+ <Redirect from="/customers" to="users" />
+
+```
+## click on button and redirect (push,replace)
+```jsx
+// src/componenst/user.jsx
+<button onClick={()=>{props.history.replace('/users')}} className="btn btn-info mt-3">Users</button>
+
+```

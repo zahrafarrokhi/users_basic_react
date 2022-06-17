@@ -5,7 +5,8 @@ import Navbar from "./components/navbar";
 import Login from "./components/login";
 import Register from "./components/register";
 import Home from "./components/home";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
+import NotFound from "./components/notFound";
 
 class App extends Component {
   render() {
@@ -18,7 +19,10 @@ class App extends Component {
             <Route path="/users" component={Users} />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
-            <Route path="/" component={Home} />
+            <Redirect from="/customers" to="users" />
+            <Route path="/not-found" component={NotFound} />
+            <Route path="/" exact component={Home} />
+            <Redirect to="/not-found" />
           </Switch>
         </div>
       </>
