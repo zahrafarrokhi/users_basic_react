@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import queryString from 'query-string';
 
 const User = (props) => {
   // console.log(props.match.params)
   const [user, setUser] = useState({});
+  console.log(queryString.parse(props.location.search));
 
   useEffect(async () => {
     const response = await axios.get(

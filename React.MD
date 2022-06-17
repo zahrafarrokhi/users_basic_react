@@ -338,3 +338,19 @@ useEffect(async () => {
 ```
 
 ###  query
+
+```jsx
+npm i query-string
+```
+
+```jsx
+import queryString from 'query-string';
+console.log(queryString.parse(props.location.search));
+// 
+http://localhost:3000/users/2?order=oldest&s=phone
+// inspect/console
+out=>
+// Object
+// order: "oldest"
+// s: "phone"
+```
