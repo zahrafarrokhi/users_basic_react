@@ -135,10 +135,107 @@ handleUpdate = (user) => {
 
 npm i recat-router-dom
 ```
+## point 
 
 ```jsx
-src/navbar.jsx
-src/home.jsx
-src/login.jsx
-src/register.jsx
+
+npm install react-router-dom@5.3.0
+```
+
+```jsx
+create
+src/components/navbar.jsx
+src/components/home.jsx
+src/components/login.jsx
+src/components/register.jsx
+```
+* 1.root(index.js),BrowserRouter
+```jsx
+// BrowserRouter
+import { BrowserRouter } from "react-router-dom";
+// src/index.js
+import ReactDOM from 'react-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import App from './app';
+import { BrowserRouter } from "react-router-dom";
+
+
+// ReactDOM.render(<App/>, document.getElementById('root'));
+ReactDOM.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  document.getElementById("root")
+);
+```
+* 2.
+```jsx
+//Route 
+import {Route} from 'react-router-dom';
+
+// src/app.js
+import React, { Component } from 'react';
+import Users from './components/users';
+import Navbar from './components/navbar';
+import Login from './components/login';
+import Register from './components/register';
+import Home from './components/home';
+import {Route} from 'react-router-dom';
+
+class App extends React.Component {
+  render() { 
+    return <>
+      <Navbar />
+      <div className='container mt-3'>
+        <Route path='/users' component={Users} />
+        <Route path='/login' component={Login} />
+        <Route path='/register' component={Register} />
+        <Route path='/' component={Home} />
+      </div>
+    </>
+  }
+}
+ 
+export default App;
+
+
+```
+
+## The root component is repeated everywhere
+* 1.exact
+```jsx
+ <Route path='/' exact component={Home} />
+```
+
+* 2.switch
+```jsx
+// src/app.js
+import React, { Component } from "react";
+import Users from "./components/users";
+import Navbar from "./components/navbar";
+import Login from "./components/login";
+import Register from "./components/register";
+import Home from "./components/home";
+import { Route, Switch } from "react-router-dom";
+
+class App extends React.Component {
+  render() {
+    return (
+      <>
+        <Navbar />
+        <div className="container mt-3">
+          <Switch>
+            <Route path="/users" component={Users} />
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+            // The most common component is at the end
+            <Route path="/" component={Home} />
+          </Switch>
+        </div>
+      </>
+    );
+  }
+}
+
+export default App;
 ```
