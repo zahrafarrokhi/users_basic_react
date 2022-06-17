@@ -6,11 +6,16 @@ class Users extends React.Component {
     users: [],
   };
 
+  async componentDidMount(){
+    const response = await axios.get('https://reqres.in/api/users');
+    console.log(response);
+    
+  }
 
   render() {
     return (
       <>
-        <button  className="btn btn-lg btn-primary">
+         <button onClick={this.handleCreate} className="btn btn-lg btn-primary">
           create
         </button>
         <div className="row">
@@ -28,14 +33,16 @@ class Users extends React.Component {
                 <h5>{user.email}</h5>
                 <div className="row">
                   <div className="col-6">
-                    <button                     
+                  <button
+                      onClick={this.handleUpdate}
                       className="btn btn-info btn-sm"
                     >
                       Update
                     </button>
                   </div>
                   <div className="col-6">
-                    <button                     
+                  <button
+                      onClick={this.handleDelete}
                       className="btn btn-danger btn-sm"
                     >
                       Delete
@@ -50,7 +57,11 @@ class Users extends React.Component {
     );
   }
 
+  handleCreate = () => {};
 
+  handleUpdate = (user) => {};
+
+  handleDelete = (user) => {};
 }
 
 export default Users;
