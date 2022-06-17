@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import LoadingUsers from "./loading/loadingUsers";
 
-class Users extends React.Component {
+class Users extends Component {
   state = {
     users: [],
     isLoading: true,
@@ -13,6 +13,9 @@ class Users extends React.Component {
     // console.log(response)
     // console.log(response.data.data)
     this.setState({ users: response.data.data, isLoading: false });
+    // setTimeout(() => {
+    //   this.setState({ users: response.data.data, isLoading: false });
+    // }, 5000);
   }
 
   render() {
@@ -40,7 +43,7 @@ class Users extends React.Component {
                   <div className="row">
                     <div className="col-6">
                       <button
-                        onClick={this.handleUpdate}
+                      onClick={()=>{this.handleUpdate(user)}}
                         className="btn btn-info btn-sm"
                       >
                         Update
@@ -48,7 +51,7 @@ class Users extends React.Component {
                     </div>
                     <div className="col-6">
                       <button
-                        onClick={this.handleDelete}
+                        onClick={() => { this.handleDelete(user) }}
                         className="btn btn-danger btn-sm"
                       >
                         Delete
@@ -66,7 +69,9 @@ class Users extends React.Component {
 
   handleCreate = () => {};
 
-  handleUpdate = (user) => {};
+  handleUpdate = (user) => {
+    console.log(user)
+  };
 
   handleDelete = (user) => {};
 }
