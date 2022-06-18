@@ -46,7 +46,9 @@ class Users extends Component {
                   <div className="row">
                     <div className="col-6">
                       <button
-                      onClick={()=>{this.handleUpdate(user)}}
+                        onClick={() => {
+                          this.handleUpdate(user);
+                        }}
                         className="btn btn-info btn-sm"
                       >
                         Update
@@ -54,7 +56,9 @@ class Users extends Component {
                     </div>
                     <div className="col-6">
                       <button
-                        onClick={() => { this.handleDelete(user) }}
+                        onClick={() => {
+                          this.handleDelete(user);
+                        }}
                         className="btn btn-danger btn-sm"
                       >
                         Delete
@@ -72,14 +76,14 @@ class Users extends Component {
 
   handleCreate = async () => {
     const newUser = {
-      first_name: 'aa',
-      last_name: 'abc',
-      email: 'abc@gmail.com',
-      avatar: '(../../screenshots/avatar.png)'
+      first_name: "aa",
+      last_name: "abc",
+      email: "abc@gmail.com",
+      avatar: "(../../screenshots/avatar.png)",
     };
-    const response = await axios.post('https://reqres.in/api/users', newUser);
-    console.log(response)
-    this.setState({users: [...this.state.users, newUser]});
+    const response = await axios.post("https://reqres.in/api/users", newUser);
+    console.log(response);
+    this.setState({ users: [...this.state.users, newUser] });
   };
 
   // update
@@ -89,25 +93,33 @@ class Users extends Component {
   // };
 
   handleUpdate = async (user) => {
-    user.first_name = 'updated';
-    const response = await axios.put(`https://reqres.in/api/users/${user.id}`, user);
-    console.log(response)
-//     const updatedUsers = [...this.state.users];
-//     const index = updatedUsers.indexOf(user);
-//     updatedUsers[index] = {...user};
+    user.first_name = "updated";
+    const response = await axios.put(
+      `https://reqres.in/api/users/${user.id}`,
+      user
+    );
+    console.log(response);
+    //     const updatedUsers = [...this.state.users];
+    //     const index = updatedUsers.indexOf(user);
+    //     updatedUsers[index] = {...user};
 
-    const updatedUsers = [...this.state.users.filter(u => u.id !== user.id), user].sort((a,b)=>a.id-b.id)
-    this.setState({users: updatedUsers});
-  };  
-  
+    const updatedUsers = [
+      ...this.state.users.filter((u) => u.id !== user.id),
+      user,
+    ].sort((a, b) => a.id - b.id);
+    this.setState({ users: updatedUsers });
+  };
+
   // delete
   // handleDelete = (user) => {};
 
-  handleDelete = async(user) => {
-    const response = await axios.delete(`https://reqres.in/api/users/${user.id}`);
-    console.log(response)
-    const newUsers = this.state.users.filter(u => u.id !== user.id);
-    this.setState({users: newUsers});
+  handleDelete = async (user) => {
+    const response = await axios.delete(
+      `https://reqres.in/api/users/${user.id}`
+    );
+    console.log(response);
+    const newUsers = this.state.users.filter((u) => u.id !== user.id);
+    this.setState({ users: newUsers });
   };
 }
 

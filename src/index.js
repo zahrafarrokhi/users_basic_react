@@ -1,5 +1,7 @@
 import ReactDOM from "react-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import 'react-loading-skeleton/dist/skeleton.css'
+
 import { BrowserRouter as Router,} from "react-router-dom";
 
 import App from "./app";
