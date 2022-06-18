@@ -92,9 +92,11 @@ class Users extends Component {
     user.first_name = 'updated';
     const response = await axios.put(`https://reqres.in/api/users/${user.id}`, user);
     console.log(response)
-    const updatedUsers = [...this.state.users];
-    const index = updatedUsers.indexOf(user);
-    updatedUsers[index] = {...user};
+//     const updatedUsers = [...this.state.users];
+//     const index = updatedUsers.indexOf(user);
+//     updatedUsers[index] = {...user};
+
+    const updatedUsers = [...this.state.users.filter(u => u.id !== user.id), user].sort((a,b)=>a.id-b.id)
     this.setState({users: updatedUsers});
   };  
   
