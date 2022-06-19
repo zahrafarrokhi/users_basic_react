@@ -385,4 +385,86 @@ import NotFound from "./components/notFound";
 
 ### control form
 * 1.ref
+
+#### class(createRef)
+```jsx
+import React, { Component, createRef } from 'react';
+import axios from 'axios';
+
+class Login extends Component {
+// ref
+  email = createRef();
+  password = createRef();
+
+  handleSubmit = async (e)=>{
+    e.preventDefault();
+    console.log('email: ', this.email.current.value);
+    console.log('password: ', this.password.current.value);
+    const account = {email:  this.email.current.value, password:  this.password.current.value};
+    if(account.email && account.password){
+      const response = await axios.post('https://reqres.in/api/login', account);
+      console.log(response);
+      // out =>
+      // email: george.bluth@reqres.in
+      // password:  1234
+      // status : 200
+    }
+  }
+  render() { 
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <div className="mb-3">
+          <label htmlFor="email">Email:</label>
+          <input ref={this.email} id="email" className='form-control' type="text"/>
+        </div>
+        <div className="mb-3">
+          <label htmlFor="password">Password:</label>
+          <input ref={this.password} id="password" className='form-control' type="text"/>
+        </div>
+        <button className="btn btn-primary">Login</button>
+      </form>)
+  }
+}
+ 
+export default Login;
+
+
+```
+#### func(useRef)
+```jsx
+import { useState, useEffect, useRef } from "react";
+import axios from "axios";
+import queryString from 'query-string';
+
+const User = (props) => {
+  const [user, setUser] = useState({});
+  const firstName = useRef(null);
+  console.log(queryString.parse(props.location.search));
+
+  useEffect(async () => {
+    const response = await axios.get(
+      `https://reqres.in/api/users/${props.match.params.id}`
+    );
+    setUser(response.data.data);
+    console.log(firstName.current);
+  },[]);
+
+  return (
+    <>
+      <img
+        src={user.avatar}
+        style={{ borderRadius: "50%", width: "100px" }}
+        alt=""
+      />
+      <h4 ref={firstName}>
+        {user.first_name} {user.last_name}
+      </h4>
+      <h5>{user.email}</h5>
+      <button onClick={()=>{props.history.replace('/users')}} className="btn btn-info mt-3">Users</button>
+    </>
+  );
+};
+
+export default User;
+```
 * 2.state
