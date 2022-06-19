@@ -381,3 +381,8 @@ import NotFound from "./components/notFound";
 <button onClick={()=>{props.history.replace('/users')}} className="btn btn-info mt-3">Users</button>
 
 ```
+
+
+### control form
+* 1.ref
+* 2.state
