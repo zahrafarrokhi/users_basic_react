@@ -1,41 +1,39 @@
-
-import React, { Component, createRef } from 'react';
-import axios from 'axios';
+import React, { Component } from 'react';
+// import axios from 'axios';
 
 class Login extends Component {
-// ref
-  email = createRef();
-  password = createRef();
-
-  handleSubmit = async (e)=>{
-    e.preventDefault();
-    console.log('email: ', this.email.current.value);
-    console.log('password: ', this.password.current.value);
-    const account = {email:  this.email.current.value, password:  this.password.current.value};
-    if(account.email && account.password){
-      const response = await axios.post('https://reqres.in/api/login', account);
-      console.log(response);
-      // out =>
-      // email: george.bluth@reqres.in
-      // password:  1234
-      // status : 200
+  state ={
+    account: {
+      email: '',
+      password: ''
     }
   }
+  handleSubmit = async (e)=>{
+    e.preventDefault();
+  }
+
+  handleChange = async ({currentTarget: input})=>{
+    const account = {...this.state.account};
+    account[input.name] = input.value;
+    this.setState({account});
+
+  }
+
   render() { 
+    const {email,password} = this.state.account;
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="email">Email:</label>
-          <input ref={this.email} id="email" className='form-control' type="text"/>
-        </div>
-        <div className="mb-3">
-          <label htmlFor="password">Password:</label>
-          <input ref={this.password} id="password" className='form-control' type="text"/>
-        </div>
-        <button className="btn btn-primary">Login</button>
-      </form>)
+    <form onSubmit={this.handleSubmit}>
+      <div className="mb-3">
+        <label htmlFor="email">Email:</label>
+        <input onChange={this.handleChange} value={email}  id="email" name='email' className='form-control' type="text"/>
+      </div>
+      <div className="mb-3">
+        <label htmlFor="password">Password:</label>
+        <input onChange={this.handleChange} value={password}  id="password" name='password' className='form-control' type="text"/>
+      </div>
+      <button className="btn btn-primary">Login</button>
+    </form>)
   }
 }
  
 export default Login;
-
