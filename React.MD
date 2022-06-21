@@ -516,3 +516,11 @@ export default Login;
 ```
 
 ![state](./screenshots/state.png)
+
+### validation
+```jsx
+npm i yup
+import * as yup from 'yup';
+src/components/login.jsx
+
+```
